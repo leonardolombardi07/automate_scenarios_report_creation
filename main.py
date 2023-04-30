@@ -77,13 +77,12 @@ def automate_scenarios_report_creation():
             time.sleep(2)
 
             # Save copied image to disk
-            case_file_name = f'Scenario_{case.scenario_number}_{case.processing}'
-            saved_img_path = pathlib.Path(SAVED_IMAGES_DIR_PATH,
-                                          f'{case_file_name}_{fringe}.png')
             img = ImageGrab.grabclipboard()
-            img.save(saved_img_path)
+            img_filename = f'Scenario_{case.scenario_number}_{case.processing}_fringe.png'
+            img_path = pathlib.Path(SAVED_IMAGES_DIR_PATH, img_filename)
+            img.save(img_path)
 
-            UI.wait_until_image_saved__EXPERIMENTAL(saved_img_path)
+            UI.wait_until_image_saved__EXPERIMENTAL(img_path)
 
     elapsed_time = time.perf_counter() - start_time
     print(
